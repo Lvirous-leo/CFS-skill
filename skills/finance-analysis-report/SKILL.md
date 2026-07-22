@@ -1,5 +1,5 @@
 ---
-name: group-financing-analysis
+name: finance-analysis-report
 description: Analyze group debt, financing balances and costs, credit facilities, maturity walls, liquidity coverage, guarantees, multi-currency exposure, and refinancing actions from tool-returned data. Use when Codex needs to prepare, review, or validate a group financing analysis report, including adapting the report to a user-uploaded Word .docx template.
 ---
 
