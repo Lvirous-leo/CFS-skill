@@ -7,6 +7,7 @@ Reusable Codex Skills managed in one repository. Each Skill lives in `skills/<sk
 | Skill | Purpose | Path | Status |
 |---|---|---|---|
 | `finance-analysis-report` | Generate traceable group financing analysis reports from tool-returned data, with debt, credit, maturity, guarantee, multi-currency, and Word-template controls. | [`skills/finance-analysis-report/`](skills/finance-analysis-report/) | Active |
+| `product-design-system` | Apply the Product visual system to websites, landing pages, dashboards, product UI, decks, email layouts, newsletters, and posters. | [`skills/product-design-system/`](skills/product-design-system/) | Active |
 
 ## Install
 
@@ -14,12 +15,14 @@ Copy the required Skill directory into your Codex Skills directory. Install only
 
 ```bash
 cp -R skills/finance-analysis-report "${CODEX_HOME:-$HOME/.codex}/skills/finance-analysis-report"
+cp -R skills/product-design-system "${CODEX_HOME:-$HOME/.codex}/skills/product-design-system"
 ```
 
 ## Invoke
 
 ```text
 $finance-analysis-report
+$product-design-system
 ```
 
 ## Validate
@@ -28,6 +31,7 @@ Run the Skill Creator validator against the selected Skill directory and run its
 
 ```bash
 python3 /path/to/skill-creator/scripts/quick_validate.py skills/finance-analysis-report
+python3 /path/to/skill-creator/scripts/quick_validate.py skills/product-design-system
 python3 -m unittest discover -s skills/finance-analysis-report/tests -p 'test_*.py' -v
 ```
 
