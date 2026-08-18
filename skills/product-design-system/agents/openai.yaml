@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Design System"
+  short_description: "Apply the Product visual system consistently"
+  default_prompt: "Use $product-design-system to create this artifact with the bundled Product design system."

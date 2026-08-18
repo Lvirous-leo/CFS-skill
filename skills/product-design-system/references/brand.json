@@ -1,0 +1,123 @@
+{
+  "name": "Product",
+  "tagline": "Figma URLs: https://www.figma.com/design/XTInjYXVAPZIpZj34T98DN/CFS9.0-design-system?node-id=207-868",
+  "description": "Figma URLs: https://www.figma.com/design/XTInjYXVAPZIpZj34T98DN/CFS9.0-design-system?node-id=207-868",
+  "sourceUrl": "designmd://product",
+  "seed": {
+    "fontFamily": "'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', system-ui, -apple-system, 'Segoe UI', sans-serif",
+    "fontSize": 14,
+    "borderRadius": 8,
+    "controlHeight": 32
+  },
+  "logo": {
+    "primary": null,
+    "alternates": [],
+    "notes": "No logo supplied in pasted DESIGN.md."
+  },
+  "colors": [
+    {
+      "role": "background",
+      "hex": "#ffffff",
+      "oklch": "",
+      "name": "Background",
+      "usage": "page canvas"
+    },
+    {
+      "role": "foreground",
+      "hex": "#111111",
+      "oklch": "",
+      "name": "Foreground",
+      "usage": "body text and headings"
+    },
+    {
+      "role": "accent",
+      "hex": "#836fff",
+      "oklch": "",
+      "name": "Accent",
+      "usage": "primary actions and emphasis"
+    },
+    {
+      "role": "surface",
+      "hex": "#f7f8fa",
+      "oklch": "",
+      "name": "Surface",
+      "usage": "cards and panels"
+    },
+    {
+      "role": "muted",
+      "hex": "#6b7280",
+      "oklch": "",
+      "name": "Muted",
+      "usage": "secondary text and metadata"
+    },
+    {
+      "role": "border",
+      "hex": "#d9dee7",
+      "oklch": "",
+      "name": "Border",
+      "usage": "rules and dividers"
+    }
+  ],
+  "typography": {
+    "display": {
+      "family": "PingFang SC",
+      "fallbacks": [
+        "Hiragino Sans GB",
+        "Microsoft YaHei",
+        "system-ui",
+        "-apple-system",
+        "Segoe UI",
+        "sans-serif"
+      ],
+      "weights": [
+        400,
+        500,
+        600
+      ]
+    },
+    "body": {
+      "family": "PingFang SC",
+      "fallbacks": [
+        "Hiragino Sans GB",
+        "Microsoft YaHei",
+        "system-ui",
+        "-apple-system",
+        "Segoe UI",
+        "sans-serif"
+      ],
+      "weights": [
+        400,
+        500,
+        600
+      ]
+    }
+  },
+  "voice": {
+    "adjectives": [],
+    "tone": "Figma URLs: https://www.figma.com/design/XTInjYXVAPZIpZj34T98DN/CFS9.0-design-system?node-id=207-868",
+    "messagingPillars": [
+      "Figma URLs: https://www.figma.com/design/XTInjYXVAPZIpZj34T98DN/CFS9.0-design-system?node-id=207-868"
+    ],
+    "vocabulary": {
+      "use": [],
+      "avoid": []
+    }
+  },
+  "imagery": {
+    "style": "",
+    "subjects": [],
+    "treatment": "",
+    "avoid": []
+  },
+  "layout": {
+    "radius": "8px",
+    "borderWeight": "1px",
+    "spacing": "8px baseline grid",
+    "postureRules": [
+      "Component kit should cover: Button, Card, Form, Navigation.",
+      "按钮仅使用单一 32px 高度，不提供尺寸变体；水平内边距固定为 8px，宽度随内容自适应。",
+      "按钮文字使用 14px PingFang SC Medium（500），圆角为 8px。",
+      "按钮状态通过背景、描边与透明度表达；实心强调色按钮使用 foreground 文字，hover、active 与 focus-visible 状态不得降低文字对比度。"
+    ]
+  }
+}
