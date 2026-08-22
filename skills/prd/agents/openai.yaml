@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD"
+  short_description: "按既有样例与 OpenDesign 编写企业级中文 PRD"
+  default_prompt: "Use $prd to generate or update a Chinese PRD from the current OpenDesign prototype while preserving the established document style."
