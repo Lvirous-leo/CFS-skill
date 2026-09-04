@@ -55,3 +55,13 @@ Calculate valid subsets only when the subset and excluded balance are disclosed.
 ## Traceability
 
 Every reported fact must trace to a tool result. Every derived value must trace to source fields, the applied formula, currency conversion, reporting date, and included population. Retain financing, facility, guarantee, and entity IDs in the appendix where allowed.
+
+## Explicit simulation mode
+
+Use synthetic supplementation only when the user explicitly requests test, example or validation data. A request to complete a production report is not authorization to invent missing facts.
+
+- Keep the original source intact and identify each supplemented field, assumed value, basis and scenario version in the data workbook or audit record.
+- Mark supplemented records `模拟补充数据｜非生产数据`; mark the report prominently `模拟验证报告｜非生产数据`. Simulated approvals, cash availability and refinancing commitments are assumptions, not verified real-world statuses.
+- Maintain financing–facility–repayment–guarantee links and reconcile totals, dates, currencies, costs and coverage. Label scenario-specific identities; passing a test reconciliation does not make it a universal business rule.
+- When a workbook is requested, retain full raw records, historical bases, market inputs and funding arrangements; keep calculations editable and provide visible checks. Top 10 limits report presentation, never the raw workbook.
+- Never carry example dates, amounts, rates, ownership, approvals, thresholds or funding solutions into another report without its own evidence or explicit simulation authorization.

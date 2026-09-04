@@ -12,86 +12,78 @@ sys.path.insert(0, str(SCRIPT_DIR))
 from validate_report_structure import validate_report  # noqa: E402
 
 
-COMPLETE_REPORT = """# 集团债务与融资分析报告
+ANALYSIS_BLOCKS = """### 图表
+结构图。
 
-## 报告信息与数据质量
-报告基准日：2026-07-22；币种：人民币；单位：万元；数据范围：集团主体。
+### 明细表
+| 项目 | 金额 |
+|---|---:|
+| 示例 | 1 |
 
-## 高管决策摘要
-总体判断基于已查询范围。
+### 分析说明
+现状、变化、原因、影响和建议。
+"""
 
-## 需决策或协调事项
+COMPLETE_REPORT = f"""# 集团债务与融资分析报告
+
+## 1. 融资经营分析总览
+报告基准日：2026-08-14；汇总币种：人民币；单位：万元；数据范围：集团主体。
+
+## 2. 高管决策摘要
+### 授信经营
+1. 现状、变化、影响和管理动作。
+
+### 融资经营
+1. 现状、变化、影响和管理动作。
+
+### 成本经营
+1. 现状、变化、影响和管理动作。
+
+### 风险事项
+1. 现状、变化、影响和管理动作。
+
+| 指标（含币种/单位） | 本期 | 环比期 | 环比变化额 | 环比变化率 | 同比期 | 同比变化额 | 同比变化率 | 管理判断 |
+|---|---:|---:|---:|---:|---:|---:|---:|---|
+| 融资余额（人民币万元） | 270260 | 无可比数据 | 无可比数据 | 无可比数据 | 无可比数据 | 无可比数据 | 无可比数据 | 保持关注 |
+
+## 3. 需决策或协调事项
 无。
 
-## 融资余额与结构
-按机构和品种展示。
+## 4. 融资余额与结构
+{ANALYSIS_BLOCKS}
 
-## 融资成本与利率风险
-展示全口径成本。
+## 5. 融资成本与利率风险
+{ANALYSIS_BLOCKS}
 
-## 授信与流动性
-展示可用授信和现金。
+## 6. 授信与流动性
+{ANALYSIS_BLOCKS}
 
-## 债务到期墙
-展示未来十二个月到期金额与覆盖。
+## 7. 债务到期墙
+{ANALYSIS_BLOCKS}
 
-## 担保及或有风险
-展示担保余额。
+## 8. 担保及或有风险
+{ANALYSIS_BLOCKS}
 
-## 建议与行动清单
-列示责任主体和时限。
-
-## 可视化图表
-提供图表数据。
-
-## 方法、来源与数据限制附录
-列示工具来源和计算公式。
+## 9. 建议与行动清单
+{ANALYSIS_BLOCKS}
 """
 
 REPORT_WITHOUT_MATURITY_WALL = COMPLETE_REPORT.replace(
-    "## 债务到期墙\n展示未来十二个月到期金额与覆盖。\n\n", ""
+    f"## 7. 债务到期墙\n{ANALYSIS_BLOCKS}\n", ""
 )
 
-REPORT_WITH_ALIASES = COMPLETE_REPORT.replace("## 债务到期墙", "## 偿债高峰分析")
+REPORT_WITH_ALIASES = COMPLETE_REPORT.replace("## 7. 债务到期墙", "## 7. 偿债高峰分析")
 
-USER_TEMPLATE_WITH_DISCLOSED_ADDITION = """# 集团债务与融资分析报告
-
-## 报告信息与数据质量
-用户模板：custom.docx；报告基准日：2026-07-22；币种：人民币；单位：万元。
-
-## 模板适配说明
-系统补充章节：债务到期墙。补充原因：原模板缺失。
-
-## 高管决策摘要
-总体判断。
-
-## 需决策或协调事项
-无。
-
-## 融资余额与结构
-结构分析。
-
-## 融资成本与利率风险
-成本分析。
-
-## 授信与流动性
-授信分析。
-
-## 债务到期墙（系统补充章节）
-到期覆盖分析。
-
-## 担保及或有风险
-担保分析。
-
-## 建议与行动清单
-行动分析。
-
-## 可视化图表
-图表数据。
-
-## 方法、来源与数据限制附录
-方法和来源。
-"""
+USER_TEMPLATE_WITH_DISCLOSED_ADDITION = COMPLETE_REPORT.replace(
+    "报告基准日：2026-08-14；",
+    "用户模板：custom.docx；报告基准日：2026-08-14；",
+).replace(
+    "## 2. 高管决策摘要",
+    "## 模板适配说明\n系统补充章节：债务到期墙。补充原因：原模板缺失。\n\n## 2. 高管决策摘要",
+).replace(
+    "## 7. 债务到期墙",
+    "## 7. 债务到期墙（系统补充章节）",
+)
 
 REPORT_WITH_UNDISCLOSED_ADDED_SECTION = USER_TEMPLATE_WITH_DISCLOSED_ADDITION.replace(
     "系统补充章节：债务到期墙。补充原因：原模板缺失。", "系统补充章节：无。"
@@ -105,6 +97,14 @@ class ValidateReportStructureTests(unittest.TestCase):
         self.assertTrue(result["valid"])
         self.assertEqual(result["missing_sections"], [])
         self.assertEqual(result["errors"], [])
+
+    def test_legacy_metadata_charts_and_appendix_are_not_required(self):
+        result = validate_report(COMPLETE_REPORT, aliases={})
+
+        self.assertTrue(result["valid"])
+        self.assertNotIn("metadata_data_quality", result["missing_sections"])
+        self.assertNotIn("charts", result["missing_sections"])
+        self.assertNotIn("methodology_sources", result["missing_sections"])
 
     def test_missing_maturity_wall_fails(self):
         result = validate_report(REPORT_WITHOUT_MATURITY_WALL, aliases={})
@@ -137,12 +137,94 @@ class ValidateReportStructureTests(unittest.TestCase):
 
     def test_user_template_requires_adaptation_statement(self):
         report = COMPLETE_REPORT.replace(
-            "报告基准日：2026-07-22", "用户模板：custom.docx；报告基准日：2026-07-22"
+            "报告基准日：2026-08-14", "用户模板：custom.docx；报告基准日：2026-08-14"
         )
 
         result = validate_report(report, aliases={})
 
         self.assertIn("template_adaptation", result["missing_sections"])
+
+    def test_executive_summary_requires_four_management_themes(self):
+        report = COMPLETE_REPORT.replace("### 风险事项\n1. 现状、变化、影响和管理动作。\n\n", "")
+
+        result = validate_report(report, aliases={})
+
+        self.assertIn("missing_executive_theme:risk_matters", result["errors"])
+
+    def test_kpi_table_requires_comparison_columns(self):
+        report = COMPLETE_REPORT.replace(
+            "| 指标（含币种/单位） | 本期 | 环比期 | 环比变化额 | 环比变化率 | 同比期 | 同比变化额 | 同比变化率 | 管理判断 |",
+            "| 指标（含币种/单位） | 本期 | 管理判断 |",
+        )
+
+        result = validate_report(report, aliases={})
+
+        self.assertIn("invalid_kpi_columns", result["errors"])
+
+    def test_executive_prose_without_numbered_points_fails(self):
+        report = COMPLETE_REPORT.replace("1. 现状、变化、影响和管理动作。", "现状、变化、影响和管理动作。", 1)
+        result = validate_report(report, aliases={})
+        self.assertIn("missing_numbered_executive_points:credit_management", result["errors"])
+
+    def test_each_executive_theme_restarts_numbering(self):
+        report = COMPLETE_REPORT.replace("### 融资经营\n1.", "### 融资经营\n2.")
+        result = validate_report(report, aliases={})
+        self.assertIn("invalid_executive_numbering:financing_management", result["errors"])
+
+    def test_missing_yoy_dimension_fails(self):
+        report = COMPLETE_REPORT.replace(" | 同比期 | 同比变化额 | 同比变化率", "")
+        result = validate_report(report, aliases={})
+        self.assertIn("invalid_kpi_columns", result["errors"])
+
+    def test_kpi_table_rejects_definition_coverage_column(self):
+        report = COMPLETE_REPORT.replace(
+            "| 指标（含币种/单位） | 本期 | 环比期 | 环比变化额 | 环比变化率 | 同比期 | 同比变化额 | 同比变化率 | 管理判断 |",
+            "| 指标（含币种/单位） | 本期 | 环比期 | 环比变化额 | 环比变化率 | 同比期 | 同比变化额 | 同比变化率 | 管理判断 | 定义/覆盖 |",
+        )
+
+        result = validate_report(report, aliases={})
+
+        self.assertIn("legacy_kpi_column:definition_coverage", result["errors"])
+
+    def test_analysis_section_requires_chart_table_narrative_order(self):
+        report = COMPLETE_REPORT.replace(
+            "### 图表\n结构图。\n\n### 明细表",
+            "### 明细表\n结构明细。\n\n### 图表",
+            1,
+        )
+
+        result = validate_report(report, aliases={})
+
+        self.assertIn("invalid_content_order:financing_structure", result["errors"])
+
+    def test_analysis_section_requires_each_content_block(self):
+        report = COMPLETE_REPORT.replace("### 分析说明\n现状、变化、原因、影响和建议。", "", 1)
+
+        result = validate_report(report, aliases={})
+
+        self.assertIn("missing_content_block:financing_structure:narrative", result["errors"])
+
+    def test_complete_top_ten_disclosure_passes(self):
+        report = COMPLETE_REPORT.replace(
+            "结构图。",
+            (
+                "Top 10 与其他（2项）。全量 12 项，展示前 10 项，其余 2 项汇总为其他；"
+                "按金额降序；所有统计分析使用全量数据。"
+            ),
+            1,
+        )
+
+        result = validate_report(report, aliases={})
+
+        self.assertTrue(result["valid"])
+        self.assertNotIn("incomplete_top10_disclosure:financing_structure", result["errors"])
+
+    def test_top_ten_requires_other_counts_sort_and_full_data_statement(self):
+        report = COMPLETE_REPORT.replace("结构图。", "Top 10。", 1)
+
+        result = validate_report(report, aliases={})
+
+        self.assertIn("incomplete_top10_disclosure:financing_structure", result["errors"])
 
     def test_cli_uses_alias_json_and_returns_success(self):
         with tempfile.TemporaryDirectory() as temp_dir:

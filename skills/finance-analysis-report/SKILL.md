@@ -9,7 +9,7 @@ Produce a traceable financing analysis from actual tool results. Keep executive 
 
 ## Core rules
 
-- Never invent or backfill amounts, rates, dates, limits, cash, FX rates, approvals, guarantees, or refinancing status.
+- For production reports, never invent or backfill amounts, rates, dates, limits, cash, FX rates, approvals, guarantees, or refinancing status. Explicitly authorized simulation is a separate mode governed by `references/data-integrity.md`; never treat a previous simulated report as production evidence.
 - Treat a successful empty result, a confirmed zero, permission denial, timeout, and tool failure as different states. Empty is not zero.
 - Retain source, query time, data time, filters, entity coverage, currency, unit, pagination status, and return status.
 - Limit every conclusion to the data coverage actually obtained.
@@ -36,8 +36,21 @@ Read each selected reference completely before acting. Do not load unneeded refe
 5. Calculate only metrics supported by complete required fields. Preserve original currency and disclose formula coverage.
 6. Assess maturity, concentration, rate, currency, guarantee, term-mismatch, and data-quality risk under the configured thresholds.
 7. Bind every proposed action to a debt, amount, currency, due date, source, owner, deadline, prerequisites, status, and backup.
-8. Compose the dual-layer report: executive decision view first, finance-team evidence and actions second.
+8. Compose the nine-section report defined in `references/report-schema.md`: operating overview first, structured executive decisions second, then finance-team evidence and actions.
 9. Run the report structure validator when a Markdown report artifact is available, then perform the delivery gates.
+
+## Report presentation
+
+- Do not create standalone data-quality, visualization, or methodology appendix sections in the standard report.
+- Put reporting date, scope, currency, unit, formula coverage, provenance and limitations next to the affected overview metric, chart, table or conclusion.
+- Structure the executive summary by `授信经营`, `融资经营`, `成本经营` and `风险事项`, using the sequence current state, comparison, impact and management action. Under each heading use numbered points, restarting at 1, with one point per paragraph; use actual numbered lists in Word.
+- Compare historical KPIs on both month-on-month and year-on-year bases. Use columns `指标（含币种/单位）`, `本期`, `环比期`, `环比变化额`, `环比变化率`, `同比期`, `同比变化额`, `同比变化率` and `管理判断`. Use `无可比数据` independently for either missing comparison base instead of inventing history.
+- In standard-report sections 4 through 9, output `图表`, then `明细表`, then `分析说明`. Keep the chart position and disclose insufficient data when a meaningful chart cannot be produced.
+- Calculate every metric, risk judgment, Top share and HHI from the full validated dataset. Top 10 is a display limit, not an analysis sample.
+- When an applicable chart or detail dimension has more than 10 items, show the first 10 under the domain ranking rules and aggregate the remainder as “其他（N项）” in both chart and table.
+- Recalculate additive and weighted values for “其他” from the remaining raw records. Never calculate HHI from an aggregated “其他” row.
+- Prioritize domain risk before amount when ranking overdue debt, near maturities, restricted facilities, excess-shareholding guarantees and actions.
+- Disclose the full item count, displayed count, other count, sorting rule and full-data calculation basis whenever Top 10 is used.
 
 ## Word template branch
 
@@ -67,17 +80,22 @@ python3 scripts/validate_report_structure.py /absolute/path/report.md --pretty
 
 Resolve script paths relative to this Skill directory when the current directory differs.
 
+When records are locally available and a Top 10 display is required, use `scripts/top10_aggregation.py` for additive totals, weighted metrics and full-data HHI.
+
 ## Delivery gates
 
 - Confirm that no fact or value lacks a tool result or traceable calculation.
 - Confirm that missing, empty, failed, stale, conflicting, and partial data are disclosed distinctly.
 - Confirm that every key metric has a reporting date, scope, currency, unit, formula, and coverage.
+- Confirm that both historical comparison bases are labeled, calculations use unrounded values, and report/Excel outputs reconcile before display rounding.
 - Confirm that no FX-missing currencies were aggregated and no future benchmark rate was assumed.
 - Confirm that maturity pressure is paired with eligible coverage sources without double counting.
 - Confirm that risk labels have an authorized threshold.
 - Confirm that uncommitted financing is not counted as committed coverage.
 - Confirm that action recommendations meet the evidence gates.
-- Confirm that charts reconcile to tables and contain no illustrative values.
+- Confirm that every section 4-9 chart reconciles to its following detail table and narrative, and contains no illustrative values.
+- Confirm that every Top 10 display reconciles to full-data totals, includes “其他（N项）” when needed, and has not changed the full-data risk or concentration calculation.
+- Confirm that missing, conflicting or partial coverage is disclosed beside the affected metric or conclusion even though no standalone data-quality appendix is used.
 - Confirm that all added template sections carry both supplementation markers.
 - Confirm that template adaptation, fallback, ignored objects, and mapping ambiguity are disclosed.
 

@@ -34,6 +34,15 @@ State whether HHI uses a 0–1 or 0–10,000 scale. Calculate lender, product, e
 
 ## Period flows
 
+### Historical comparisons
+
+- Retain a dated snapshot for each current, month-on-month and year-on-year base, with consistent entity scope, currency/FX policy and metric definition.
+- `absolute_change = current − comparison`; `relative_change = absolute_change ÷ comparison` for a positive comparison base. If the base is confirmed zero, show the amount change and `不适用（基期为0）` for the rate. Missing is `无可比数据`, not zero. Explain any negative-base convention before calculating a relative rate.
+- For rates stored as fractions, percentage-point change is `(current − comparison) × 100` and BP change is `(current − comparison) × 10000`. If stored as percentage numbers, use the difference directly for percentage points and multiply by 100 for BP. Never mix storage conventions.
+- Preserve source precision through all calculations and round only for display; the workbook, chart, KPI table and narrative must share the same calculation inputs.
+- For stocks, label the exact as-of dates. A midmonth-to-prior-month-end comparison must be labeled as such, not represented as two completed months. For flows, compare equivalent durations (for example month-to-date against the same elapsed prior-month/prior-year interval), not a partial month against a full month.
+- Historical maturity and availability metrics require what was known and eligible at each historical date; do not back-project today's repayment or facility status as historical truth.
+
 - Weekly new financing uses actual draw/start date within the configured period and valid status under the group definition.
 - Weekly repayment uses actual principal payment date within the period. Show interest separately.
 - A scheduled payment without actual-payment status is not a completed repayment.
