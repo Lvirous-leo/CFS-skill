@@ -1,11 +1,23 @@
 ---
 name: prd
-description: Create or update Chinese enterprise PRDs from OpenDesign prototypes, existing PRD samples, and user decisions. Use when the user asks for PRD生成、PRD更新、根据交互稿写需求、补充字段说明，or wants future PRDs to follow an established document style.
+description: Create, update, or review Chinese enterprise PRDs from OpenDesign prototypes, maintained documents, and user decisions. Use for PRD生成、PRD更新、需求评审、根据交互稿写需求、补充字段说明, or reviewing business boundaries and acceptance gaps in a PRD. Preserve established document styles; standalone market research and code review are outside this skill.
 ---
 
 # PRD
 
 Write implementation-oriented Chinese PRDs that preserve the user's established document style and decisions.
+
+## Choose the Working Scope
+
+Infer the mode from the request and available context; do not ask the user to choose routinely.
+
+- **Incremental update:** For a field addition, wording correction, or prototype change, inspect the affected section and its actual dependencies. Do not restart discovery, review unrelated pages, or require new goals and alternatives.
+- **Full PRD:** For a new feature, establish the known problem, users, objective, scope, constraints, and assumptions. Reuse supplied decisions; put this content into the existing document structure.
+- **Business review:** For questions about duplication, module boundaries, or design quality, analyze before recommending changes. A review request alone does not authorize rewriting a live PRD.
+
+Read [references/business-review.md](references/business-review.md) for new functionality, cross-module rule changes, or substantive business review. Read [references/acceptance-review.md](references/acceptance-review.md) for full PRDs, reviews, or updates affecting behavior, calculations, associations, states, or permissions. Plain wording edits need neither reference.
+
+Continue work supported by the evidence. Ask only for missing decisions that materially affect correctness; keep dependent rules unresolved while progressing on independent sections.
 
 ## Source Priority
 
@@ -19,14 +31,24 @@ Use sources in this order:
 
 Never overwrite a newer manual edit merely because the prototype or an earlier draft differs. When updating an existing PRD, read the complete relevant section first and preserve unaffected content.
 
+Apply precedence to the particular rule, not the entire document. A manual edit in one paragraph does not make every paragraph newer than the prototype. A visible control establishes appearance, not unshown business behavior.
+
+When reconciling sources:
+
+- Apply new, nonconflicting prototype content within the requested update scope.
+- Preserve an explicit user decision unless the user supersedes it. If a prototype conflicts, identify the exact rule and surface involved.
+- If authority or recency is unclear, record both versions and their impact in `待确认项`; do not silently choose one.
+- Before deleting a field or module, inspect intentional retention and dependent references, formulas, states, screenshots, and pending items. An inaccessible source is not evidence of deletion.
+
 ## Required Working Method
 
 1. Read the current PRD and identify its actual headings, table structure, numbering, terminology, units, and level of detail.
-2. Read the relevant OpenDesign files and inspect every page, module, list, drawer, dialog, empty state, view mode, and responsive state that affects the requirement.
+2. Read available relevant OpenDesign files and visible states to the depth required by the mode. Inspect affected modules and dependencies; disclose unavailable evidence without inventing screens or blocking independent document work.
 3. Build a focused change list: added, changed, removed, and unchanged content.
 4. Update only the affected rows or sections. Keep approved user-authored wording unless it conflicts with a newer explicit decision.
-5. Put unresolved business rules in `待确认项`; do not silently invent data sources, formulas, permissions, or lifecycle behavior.
-6. Before reporting completion, verify row order, field coverage, formulas, screenshots, and save state.
+5. Put unresolved business rules in `待确认项`; name the affected object, missing decision, downstream impact, and which work can proceed. Do not silently invent data sources, formulas, permissions, or lifecycle behavior.
+6. Check critical rules through relevant acceptance scenarios. Correct contradictions supported by established decisions; keep unsupported outcomes unresolved. Fold clarified rules into their owning rows rather than adding a test document by default.
+7. Before reporting completion, verify affected row order, field coverage, formulas, screenshots when involved, and save state. Distinguish document inspection, visual verification, and executed software tests; report only checks actually performed.
 
 ## Default Document Shape
 
@@ -69,7 +91,7 @@ Keep field description, calculation rule, and action behavior separate. A field 
 
 ## Final Quality Gate
 
-Confirm that:
+Apply the following to the affected scope; do not turn a small edit into a full-document audit. Confirm that:
 
 - every visible field has an explanation or a deliberate exclusion;
 - field descriptions include known requiredness, type, source/options, editability, format, and linkage;
@@ -77,6 +99,8 @@ Confirm that:
 - totals, formulas, thresholds, units, and rounding are explicit and internally consistent;
 - list empty states, pagination, states, and permissions are covered when applicable;
 - cross-module changes identify downstream recalculation or status impact;
+- substantive changes have clear business-object ownership and no unexplained duplicate maintenance;
+- critical rules have observable acceptance outcomes, or the missing outcome is explicitly pending;
+- review findings separate evidenced contradictions, missing decisions, and optional improvements, with concrete locations and consequences;
 - unknowns are consolidated in `待确认项` rather than disguised as facts;
 - screenshots match their rows and existing manual edits remain intact.
-

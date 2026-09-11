@@ -138,6 +138,10 @@ Use one consolidated `待确认项` row. Each item must name the object and miss
 
 Do not repeat questions already resolved in the PRD. Remove an item when the user decides it, and update the affected requirement row at the same time.
 
+For each item, state `对象与缺失决策；受影响规则/模块；可继续的工作与依赖确认的部分。` Keep simple items short. Do not invent a recommended rule or silently treat a proposed answer as approved.
+
+Example: `融资申请额度占用时点待确认：提交时还是审批通过时占用；影响可申请金额、并发超额校验和撤回释放规则；页面字段可继续编写，相关计算及验收预期暂不定稿。` The alternatives illustrate an unresolved choice, not default financing policy.
+
 ## 9. Language and Formatting
 
 - Use short declarative sentences and exact product labels.
@@ -147,4 +151,3 @@ Do not repeat questions already resolved in the PRD. Remove an item when the use
 - Avoid generic filler such as `优化体验`, `支持相关操作`, or `系统自动处理`.
 - Avoid duplicating the same formula or status rule in multiple rows; keep the full rule in the owning module and reference its effect elsewhere.
 - Preserve user wording when it expresses an approved business decision, even if a more polished synonym exists.
-

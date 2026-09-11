@@ -8,7 +8,7 @@ Reusable Codex Skills managed in one repository. Each Skill lives in `skills/<sk
 |---|---|---|---|
 | `finance-analysis-report` | Generate traceable group financing analysis reports from tool-returned data, with debt, credit, maturity, guarantee, multi-currency, and Word-template controls. | [`skills/finance-analysis-report/`](skills/finance-analysis-report/) | Active |
 | `product-design-system` | Apply the Product visual system to websites, landing pages, dashboards, product UI, decks, email layouts, newsletters, and posters. | [`skills/product-design-system/`](skills/product-design-system/) | Active |
-| `prd` | Create or update Chinese enterprise PRDs from OpenDesign prototypes, existing PRD samples, and user decisions. | [`skills/prd/`](skills/prd/) | Active |
+| `prd` | Create, update, or review Chinese enterprise PRDs with scoped changes, business-boundary checks, source reconciliation, and acceptance review while preserving established document styles. | [`skills/prd/`](skills/prd/) | Active |
 
 ## Install
 
