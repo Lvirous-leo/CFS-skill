@@ -1,111 +1,115 @@
 ---
 name: prd
-description: Create, update, or review Chinese enterprise PRDs from OpenDesign prototypes, maintained documents, and user decisions. Use for PRD生成、PRD更新、需求评审、根据交互稿写需求、补充字段说明, or reviewing business boundaries and acceptance gaps in a PRD. Preserve established document styles; standalone market research and code review are outside this skill.
+description: 根据OpenDesign原型、人工维护文档和用户决定，编写、更新或评审中文企业需求文档。适用于PRD生成、PRD更新、需求评审、根据交互稿写需求、补充字段说明及业务边界和验收缺口审查；保留现有文档风格。不用于独立市场研究或代码评审。
 ---
 
-# PRD
+# PRD 需求文档
 
-Write implementation-oriented Chinese PRDs that preserve the user's established document style and decisions.
+编写可指导实现的中文企业需求文档，保留用户既有的文档风格和决定。
 
-## Choose the Working Scope
+默认读取本中文版及[中文写作风格参考](references/writing-style.md)。[英文主说明](SKILL.en.md)及[英文写作风格参考](references/writing-style.en.md)提供相同规则，供英文阅读；不改变用户要求的交付语言，也不构成另一套技能。修改时同步对应语言版本，不必为同一任务重复读取两版。
 
-Infer the mode from the request and available context; do not ask the user to choose routinely.
+## 选择工作范围
 
-- **Incremental update:** For a field addition, wording correction, or prototype change, inspect the affected section and its actual dependencies. Do not restart discovery, review unrelated pages, or require new goals and alternatives.
-- **Full PRD:** For a new feature, establish the known problem, users, objective, scope, constraints, and assumptions. Reuse supplied decisions; put this content into the existing document structure.
-- **Business review:** For questions about duplication, module boundaries, or design quality, analyze before recommending changes. A review request alone does not authorize rewriting a live PRD.
+根据请求和已有上下文判断工作方式，不常规要求用户选择。
 
-Read [references/business-review.md](references/business-review.md) for new functionality, cross-module rule changes, or substantive business review. Read [references/acceptance-review.md](references/acceptance-review.md) for full PRDs, reviews, or updates affecting behavior, calculations, associations, states, or permissions. Plain wording edits need neither reference.
+- **增量更新**：新增字段、修改措辞或原型变化时，检查受影响章节及实际依赖；不重新启动需求发现，不审查无关页面，不要求新增目标和替代方案。
+- **完整需求文档**：新功能需明确已知问题、用户、目标、范围、约束和假设；复用已有决定，放入现有文档结构。
+- **业务评审**：讨论重复建设、模块边界或方案质量时，先分析再建议。仅有评审请求，不代表授权改写在线需求文档。
 
-Continue work supported by the evidence. Ask only for missing decisions that materially affect correctness; keep dependent rules unresolved while progressing on independent sections.
+涉及新功能、跨模块规则变化或实质性业务评审时，读取[业务评审参考](references/business-review.md)。编写完整需求文档、开展评审，或更新行为、计算、关联、状态、权限时，读取[验收与一致性参考](references/acceptance-review.md)。纯措辞修改无需读取这两份参考。
 
-## Source Priority
+有证据支持的内容持续推进；仅对实质影响正确性的缺失决策提问。依赖该决策的规则保持未定，其他内容继续。
 
-Use sources in this order:
+## 来源优先级
 
-1. the user's latest explicit decision;
-2. the latest manually edited PRD;
-3. the latest OpenDesign artifact and visible interaction states;
-4. earlier PRD samples and approved adjacent documents;
-5. clearly labeled inference.
+依次采用：
 
-Never overwrite a newer manual edit merely because the prototype or an earlier draft differs. When updating an existing PRD, read the complete relevant section first and preserve unaffected content.
+1. 用户最新明确决定；
+2. 最新人工编辑的需求文档；
+3. 最新OpenDesign产物及可见交互状态；
+4. 早期需求样例及已批准的相邻文档；
+5. 明确标注的推断。
 
-Apply precedence to the particular rule, not the entire document. A manual edit in one paragraph does not make every paragraph newer than the prototype. A visible control establishes appearance, not unshown business behavior.
+不得因原型或旧草稿不同，覆盖较新的人工修改。更新前完整读取相关章节，保留未受影响内容。
 
-When reconciling sources:
+优先级针对具体规则适用，不针对整份文档。某段人工编辑较新，不代表全文都新于原型；可见控件只能证明界面存在，不能证明未展示的业务行为。
 
-- Apply new, nonconflicting prototype content within the requested update scope.
-- Preserve an explicit user decision unless the user supersedes it. If a prototype conflicts, identify the exact rule and surface involved.
-- If authority or recency is unclear, record both versions and their impact in `待确认项`; do not silently choose one.
-- Before deleting a field or module, inspect intentional retention and dependent references, formulas, states, screenshots, and pending items. An inaccessible source is not evidence of deletion.
+协调来源时：
 
-## Required Working Method
+- 在本次范围内，纳入新增且不冲突的原型内容。
+- 保留用户明确决定，除非用户已修改该决定；原型冲突时，指出具体规则和页面。
+- 来源权威性或先后不清时，在“待确认项”保留两种说法及影响，不静默选择。
+- 删除字段或模块前，检查是否有意保留，以及依赖引用、公式、状态、截图和待确认项；来源不可访问不代表内容应删除。
 
-1. Read the current PRD and identify its actual headings, table structure, numbering, terminology, units, and level of detail.
-2. Read available relevant OpenDesign files and visible states to the depth required by the mode. Inspect affected modules and dependencies; disclose unavailable evidence without inventing screens or blocking independent document work.
-3. Build a focused change list: added, changed, removed, and unchanged content.
-4. Update only the affected rows or sections. Keep approved user-authored wording unless it conflicts with a newer explicit decision.
-5. Put unresolved business rules in `待确认项`; name the affected object, missing decision, downstream impact, and which work can proceed. Do not silently invent data sources, formulas, permissions, or lifecycle behavior.
-6. Check critical rules through relevant acceptance scenarios. Correct contradictions supported by established decisions; keep unsupported outcomes unresolved. Fold clarified rules into their owning rows rather than adding a test document by default.
-7. Before reporting completion, verify affected row order, field coverage, formulas, screenshots when involved, and save state. Distinguish document inspection, visual verification, and executed software tests; report only checks actually performed.
+## 工作方法
 
-## Default Document Shape
+1. 读取当前需求文档，识别实际标题、表格、编号、术语、单位和描述粒度。
+2. 按本次工作范围读取可用的相关OpenDesign文件和可见状态，检查模块及依赖；来源不可用时说明证据限制，不虚构页面，也不阻断可独立推进的文档工作。
+3. 整理聚焦的新增、变更、删除和保持不变清单。
+4. 仅更新受影响的行或章节。已批准的用户原文予以保留，除非与更新的明确决定冲突。
+5. 未定业务规则放入“待确认项”，说明对象、缺失决策、下游影响、可继续工作；不编造来源、公式、权限和生命周期行为。
+6. 通过相关验收场景检查关键规则。已有决定支持的矛盾直接纠正，缺少依据的结果保持未定；明确后的规则写回所属条目，不默认另建测试文档。
+7. 报告完成前，核对受影响行顺序、字段覆盖、公式、适用截图及保存状态；区分文档检查、视觉核验和实际软件测试，只报告已执行的检查。
 
-When the existing sample uses the same format, write `2. 需求分析` as a two-column table:
+## 默认文档结构
 
-- `原型`: one page, module, dialog, flow, or major state per row. Keep the module title and add the corresponding cropped OpenDesign screenshot below it.
-- `需求分析`: describe observable fields, actions, rules, calculations, states, permissions, feedback, and exceptions for that row.
+已有样例采用相同格式时，将“2. 需求分析”写为两列表格：
 
-Use one row per coherent module. Do not create rows for purely internal implementation details. For a non-screen process such as approval, use an available flow diagram or confirmed process artifact; do not fabricate a UI screenshot.
+- **原型**：每行对应一个页面、模块、弹窗、流程或主要状态；保留模块标题，在下方插入对应OpenDesign功能区域截图。
+- **需求分析**：描述该行可观察的字段、操作、规则、计算、状态、权限、反馈及异常。
 
-Use the current document's hierarchical numbering. The preferred enterprise-document pattern is `1.` → `a.` → `i.`. Keep items concise enough to scan, but complete enough for design, development, and testing.
+一行对应一个完整模块，不为纯内部实现细节新建行。审批等非页面流程，使用已有流程图或已确认流程资料，不虚构界面截图。
 
-## Writing Fields and Rules
+沿用当前文档的层级编号。优先采用 `1.` → `a.` → `i.`；条目应便于扫描，同时足以指导设计、开发和测试。
 
-Read [references/writing-style.md](references/writing-style.md) whenever the PRD contains forms, lists, calculations, states, permissions, attachments, associations, or screenshots, or when matching a user-authored sample. Apply its maintained-document style profile before its fallback field and module ordering. When logic and functionality are substantially the same as the supplied user-authored PRD, reuse its sentence patterns, hierarchy, terminology, and level of detail; describe only the actual differences rather than expanding it into explanatory prose. Preserve required business controls and record unresolved rules separately.
+## 字段与规则写法
 
-For each field, cover only the dimensions that matter, but do not omit a known constraint:
+涉及表单、列表、计算、状态、权限、附件、关联、截图，或需对齐用户样例时，读取[中文写作风格参考](references/writing-style.md)；英文阅读可改读[对应英文版](references/writing-style.en.md)。先应用人工文档风格，再使用默认字段和模块顺序。
 
-`字段名：必填性，组件/展示方式；数据来源或枚举；默认值与可编辑性；格式、范围、精度和单位；联动与异常规则。`
+逻辑和功能与用户原文基本一致时，复用其句式、层级、术语和描述粒度，仅展开实际差异，不改写成解释性长段落。保留必要业务控制，未定规则单独记录。
 
-Keep field description, calculation rule, and action behavior separate. A field list says what data is shown or entered; later numbered items explain how it changes, aggregates, links, validates, and recovers.
+每个字段只覆盖相关要素，但不得遗漏已知约束：
 
-## Update Discipline
+`字段名：必填性，组件／展示方式；数据来源或枚举；默认值与可编辑性；格式、范围、精度和单位；联动与异常规则。`
 
-- Treat the current PRD as the style authority, not a generic software PRD template.
-- Do not introduce `REQ-001`, user-story tables, evidence levels, or GO/HOLD sections unless the user asks for that format.
-- Do not remove user-added fields, options, statuses, or wording because they are absent from an older prototype.
-- If OpenDesign changed, update the corresponding row, dependent formulas, downstream linkage, risks, and `待确认项`; do not rewrite unrelated rows.
-- If a field disappears from the prototype, verify whether the PRD or a user decision intentionally retains it before removing it.
-- Use exact business terms consistently across labels, formulas, actions, and status rules.
+字段说明、计算规则、操作行为分开。字段清单说明录入或展示什么，后续编号条目说明如何变化、汇总、关联、校验和恢复。
 
-## Prototype Images
+## 更新要求
 
-- For any screenshot task, read and follow the prototype screenshot procedure in [references/writing-style.md](references/writing-style.md).
-- Before capture, map each populated prototype row as `PRD row → OpenDesign page → functional region → interaction state → screenshot count`. The image must support the observable content described in that row.
-- Add one relevant image to every populated `原型` cell when the user requests screenshots.
-- Capture the exact functional region and state. Do not use a full browser viewport when it leaves the relevant content small, preserves unrelated navigation or chrome, or creates large blank areas.
-- Use a list/query crop for list rules, a module crop for field rules, and a dedicated dialog, drawer, comparison, risk-panel, or flow crop for its behavior. Split a long module into multiple readable images when one image would make its text too small.
-- Reuse a screenshot only when several rows genuinely describe the same visible surface and interaction state.
-- Preserve existing text in the cell and place the image below the title.
-- After insertion, inspect the remote document at its normal reading scale. Relevant fields, buttons, states, and key values must be readable without opening the image separately.
-- Verify content match, functional crop, readability, placement, upload completion, and saved state for each affected row. Upload completion and a saved document alone do not prove that a prototype image is correctly delivered.
+- 以当前文档为样式依据，不套通用需求模板。
+- 用户未要求时，不引入需求编号体系、用户故事表、证据分级或立项决策章节。
+- 不因旧原型缺失，删除用户新增的字段、选项、状态或文字。
+- OpenDesign变化时，更新对应行、依赖公式、下游联动、风险及待确认项，不重写无关行。
+- 原型字段消失时，先检查需求文档或用户决定是否有意保留。
+- 标签、公式、操作和状态规则中的业务术语保持一致。
 
-## Final Quality Gate
+## 原型截图
 
-Apply the following to the affected scope; do not turn a small edit into a full-document audit. Confirm that:
+- 截图任务须遵循写作风格参考中的截图流程。
+- 截图前，将每个已填充的原型行映射为“需求行 → OpenDesign页面 → 功能区域 → 交互状态 → 截图数量”；图片须支持对应行的可观察内容。
+- 用户要求截图时，每个已填充的原型单元格至少添加一张相关图片。
+- 截取准确的功能区域和状态，不使用使内容过小、夹带无关导航或大量留白的整页画面。
+- 列表规则使用列表／查询区域截图；字段规则使用模块截图；弹窗、抽屉、比较、风险面板或流程使用对应区域截图。长模块在一张图中会缩小文字时，拆成多张可读图片。
+- 只有多行确实描述同一可见区域、同一交互状态时，才复用截图。
+- 保留单元格原文，图片放在对应标题下方。
+- 插入后，以远程文档正常阅读比例检查。相关字段、按钮、状态和关键值应清楚可辨，不需单独打开图片。
+- 逐行核对内容、裁切、可读性、位置、上传完成及保存状态。上传完成、文档已保存不代表截图交付正确。
 
-- similar functionality follows the supplied user-authored sample in sentence patterns, hierarchy, terminology, and detail; reused behavior states the actual differences, and unnecessary explanatory prose has been removed;
-- every visible field has an explanation or a deliberate exclusion;
-- field descriptions include known requiredness, type, source/options, editability, format, and linkage;
-- actions include trigger, result, feedback, and failure or cancellation behavior when relevant;
-- totals, formulas, thresholds, units, and rounding are explicit and internally consistent;
-- list empty states, pagination, states, and permissions are covered when applicable;
-- cross-module changes identify downstream recalculation or status impact;
-- substantive changes have clear business-object ownership and no unexplained duplicate maintenance;
-- critical rules have observable acceptance outcomes, or the missing outcome is explicitly pending;
-- review findings separate evidenced contradictions, missing decisions, and optional improvements, with concrete locations and consequences;
-- unknowns are consolidated in `待确认项` rather than disguised as facts;
-- screenshots match their rows, use readable functional crops, remain legible at the remote document's normal reading scale, and existing manual edits remain intact;
-- screenshot completion is not reported from image-node existence, upload success, or saved state alone; failed content, crop, readability, or placement checks are recaptured and reverified.
+## 交付前质量检查
+
+仅针对受影响范围检查，不将小改动扩大为全文审计：
+
+- 类似功能沿用用户样例的句式、层级、术语和粒度；复用内容明确实际差异，删除不必要的解释。
+- 每个可见字段有说明，或已明确不纳入。
+- 字段说明包含已知的必填性、类型、来源／选项、编辑性、格式和联动。
+- 操作包含触发、结果、反馈，以及适用的失败或取消行为。
+- 合计、公式、阈值、单位和舍入明确且一致。
+- 按需覆盖列表空态、分页、状态和权限。
+- 跨模块变化明确下游重算或状态影响。
+- 实质变更有清晰的业务对象归属，无未解释的重复维护。
+- 关键规则有可观察的验收结果；缺失结果明确列为待确认。
+- 评审区分有证据的矛盾、缺失决策和可选优化，指出位置及后果。
+- 未知规则集中列入“待确认项”，不伪装为事实。
+- 截图与需求行匹配，裁切准确、正常阅读比例下可读、位置正确，保留人工内容。
+- 不以图片节点存在、上传成功或已保存作为截图完成依据；内容、裁切、可读性或位置失败时，重新截图并核验。

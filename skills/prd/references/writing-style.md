@@ -1,224 +1,224 @@
-# PRD Writing Style
+# PRD 写作风格参考
 
-Use this reference for the compact, field-oriented Chinese PRD style learned from the maintained enterprise PRD.
+本参考用于编写简洁、面向字段和操作的中文企业需求文档，默认使用本中文版。[英文版](writing-style.en.md)与本版规则一致，仅供英文阅读；使用英文版不改变用户要求的交付语言。后续修改须同步两版，不分别维护不同规则。
 
 ## 0. 用户原文的风格对齐（优先于下述默认写法）
 
-依据：用户于2026-10-16明确要求，相同或相近逻辑尽量沿用其文字风格和描述方式；样本为用户编写的《保理优化》第五章反向保理。以下用于该用户的类似企业PRD任务；新任务提供其他样例或明确要求时，以新样例和最新要求为准。只学习表达，不将样本中的业务规则、未完成条目或矛盾推广为通用规则。
+依据：用户于2026-10-16明确要求，相同或相近逻辑尽量沿用其文字风格和描述方式；样本为用户编写的《保理优化》第五章反向保理。以下用于该用户的类似企业需求文档任务；新任务提供其他样例或明确要求时，以新样例和最新要求为准。只学习表达，不将样本中的业务规则、未完成条目或矛盾推广为通用规则。
 
 ### 表达与粒度
 
 - 先读用户提供的完整相关模块及最接近的人工章节，识别页面分行、字段顺序、编号、句式和信息密度。相同逻辑优先沿用原句结构并替换确有差异的业务对象，不重新组织成另一套产品文档。
 - 沿用“原型图／需求分析”等现有列名，一行对应一个页面、抽屉、弹窗或相关改造模块；按原文使用 `1.` → `a.` → `i.` 分层。字段归在“基本信息”等所属模块内，不把原来有层级的条目改成长段平铺。
-- 直接写功能和操作：`列表包含……`、`过滤……`、`点击……，打开／进入……`、`若……，则……`、`当……时，通知……更新……`。一条说明一个动作或一组紧密关联的规则；需要展开时用下一层编号。
-- 字段使用原文的紧凑表达，如 `机构类型：默认银行，可修改，必填`。保留用户的字段名、业务术语、默认值和“置灰不可修改”等明确用语；字段契约作为完整性核对清单，不强制重排原文词序，也不为每个字段机械补齐全部维度。
-- 与现有功能一致时，写 `与××相同`、`复用××`；只有差异时，写 `在××基础上，增加／剔除……`、`仅将“××”更名为“××”（不支持修改）`。引用应能定位到具体功能或模块，差异要明确；实际有重要差异或来源不明时，不能笼统写“同现有逻辑”。
-- 简短补充可沿用括号和 `注：`；保留已明确的P0/P1，不自行分配优先级。不要复制样本中的人员提及、空编号、笔误或未完成内容。
+- 直接写功能和操作：“列表包含……”“过滤……”“点击……，打开／进入……”“若……，则……”“当……时，通知……更新……”。一条说明一个动作或一组紧密关联的规则；需要展开时用下一层编号。
+- 字段使用原文的紧凑表达，如“机构类型：默认银行，可修改，必填”。保留用户的字段名、业务术语、默认值和“置灰不可修改”等明确用语；字段说明要素作为完整性核对清单，不强制重排原文词序，也不为每个字段机械补齐全部维度。
+- 与现有功能一致时，写“与××相同”“复用××”；只有差异时，写“在××基础上，增加／剔除……”“仅将‘××’更名为‘××’（不支持修改）”。引用应能定位到具体功能或模块，差异要明确；实际有重要差异或来源不明时，不能笼统写“同现有逻辑”。
+- 简短补充可沿用括号和“注：”；保留已明确的P0/P1，不自行分配优先级。不要复制样本中的人员提及、空编号、笔误或未完成内容。
 
 ### 分析与正文分开
 
-- 业务分析可以充分，PRD正文优先保留可执行的字段、动作、条件、结果和联动。不要把分析过程、概念辨析、设计理由、反复声明、通用风控清单和交付状态说明逐条塞进需求单元格。
+- 业务分析可以充分，需求正文优先保留可执行的字段、动作、条件、结果和联动。不要把分析过程、概念辨析、设计理由、反复声明、通用风控清单和交付状态说明逐条塞进需求单元格。
 - 必要的金额、权限、异常和闭环规则用原文粒度写入所属条目；共用规则集中说明一次，其他模块描述差异或引用。不能为了简短省略已知关键条件，也不能仅为显示完整而扩展页面或流程。
 - 未知规则集中到“待确认项”，简要写清缺什么及影响；当前任务无关的远期问题不追加。同一未定事项不在每一行重复解释。发现原文冲突时说明位置与后果，不因模仿风格沿用矛盾规则。
 
 ### 原文句式示例（仅示范表达）
 
-- 布局：`保理提款页面为左侧提款卡片，右侧应付列表。`
-- 操作：`点击左侧提款卡片的编辑，进入保理融资编辑页面。`
-- 字段：`提款单融资组织＝应付单付方组织，置灰不可修改，必填。`
-- 复用：`占用授信：与提款中占用授信列表相同。`
-- 差异：`列表字段与票据配单页面相同，仅将“交易金额”更名为“融资金额”（不支持修改）。`
-- 联动：`当保理状态为已提款-待还款时，通知应付单更新状态为已认领，创建认领关系。`
+- 布局：“保理提款页面为左侧提款卡片，右侧应付列表。”
+- 操作：“点击左侧提款卡片的编辑，进入保理融资编辑页面。”
+- 字段：“提款单融资组织＝应付单付方组织，置灰不可修改，必填。”
+- 复用：“占用授信：与提款中占用授信列表相同。”
+- 差异：“列表字段与票据配单页面相同，仅将‘交易金额’更名为‘融资金额’（不支持修改）。”
+- 联动：“当保理状态为已提款-待还款时，通知应付单更新状态为已认领，创建认领关系。”
 
 交付前，将新增模块与最接近的用户原文并排核对：结构、句式、术语和信息密度是否一致；是否仅展开真实差异；是否将必要补充写成了过长的解释。不要将此前助手生成的长篇章节当作用户写作风格样本。
 
-## 1. Module-Level Order
+## 1. 模块内容顺序
 
-When no maintained sample establishes a different order, use the following as a fallback. For a form or detail module, write in this order when applicable:
+没有人工维护样例规定其他顺序时，采用以下默认顺序。表单或详情模块按适用情况编写：
 
-1. module purpose and supported actions;
-2. fields, in visual order;
-3. add, edit, delete, associate, query, or submit behavior;
-4. validation and boundary conditions;
-5. totals and formulas;
-6. linkage to downstream modules;
-7. state, permission, feedback, and recovery rules.
+1. 模块用途和支持的操作；
+2. 字段，按页面展示顺序；
+3. 新增、编辑、删除、关联、查询或提交行为；
+4. 校验及边界条件；
+5. 合计与计算公式；
+6. 下游模块联动；
+7. 状态、权限、反馈和恢复规则。
 
-For a list page, prefer:
+列表页优先采用以下顺序：
 
-1. page entry;
-2. query conditions;
-3. page-level buttons;
-4. list fields;
-5. row operations;
-6. document and approval statuses;
-7. status-to-operation permissions;
-8. pagination and empty state;
-9. data-scope permissions.
+1. 页面入口；
+2. 查询条件；
+3. 页面按钮；
+4. 列表字段；
+5. 行操作；
+6. 单据状态和审批状态；
+7. 各状态允许的操作；
+8. 分页和空态；
+9. 数据范围权限。
 
-Do not force empty subsections. Include only rules supported by the prototype, existing PRD, or an explicit decision.
+不强行设置空小节。只写原型、现有需求文档或明确决定有依据的规则。
 
-## 2. Field Contract
+## 2. 字段说明要素
 
-When no maintained sample establishes a different phrasing, describe fields with this sequence; otherwise use it as a completeness checklist without rewriting the sample’s word order:
+没有人工维护样例规定其他句式时，按以下顺序描述；已有样例时，作为完整性核对清单，不改写原文词序：
 
-`字段名：必填性，组件或展示方式；数据来源/枚举；默认值与可编辑性；格式、范围、精度和单位；联动或异常规则。`
+`字段名：必填性，组件或展示方式；数据来源／枚举；默认值与可编辑性；格式、范围、精度和单位；联动或异常规则。`
 
-Examples:
+示例：
 
-- `规划组织：必填，下拉单选；取当前用户有权限的组织数据。`
-- `计划金额：必填，数字输入；金额应满足业务下限，保留两位小数；单位随所选币种展示。`
-- `结束日期：必填，日期控件；由系统根据开始日期和周期类型带出，不可编辑。`
-- `状态：只读；展示当前单据状态，枚举及流转规则见状态与权限。`
+- “规划组织：必填，下拉单选；取当前用户有权限的组织数据。”
+- “计划金额：必填，数字输入；金额应满足业务下限，保留两位小数；单位随所选币种展示。”
+- “结束日期：必填，日期控件；由系统根据开始日期和周期类型带出，不可编辑。”
+- “状态：只读；展示当前单据状态，枚举及流转规则见状态与权限。”
 
-Apply these dimensions deliberately:
+按需说明以下要素：
 
-- **必填性**: 必填、非必填、条件必填、系统生成。
-- **组件**: 输入框、数字输入、下拉单选、下拉多选、日期控件、只读文本、开关、附件组件、操作入口。
-- **来源**: 基础数据、组织权限范围、关联单据、配置项、系统计算、用户录入。
-- **枚举**: list all confirmed values in the display order. If incomplete, move the missing definition to `待确认项`.
-- **编辑性**: 可编辑、不可编辑、条件可编辑; avoid using only the visual phrase `置灰`.
-- **格式**: data type, length when known, amount or percentage range, decimal precision, date format, and unit.
-- **联动**: triggering field/action, affected field/module, timing, and reset behavior.
-- **empty/error**: empty display, invalid input, unavailable source, or failed calculation behavior when confirmed.
+- **必填性**：必填、非必填、条件必填、系统生成。
+- **组件**：输入框、数字输入、下拉单选、下拉多选、日期控件、只读文本、开关、附件组件、操作入口。
+- **来源**：基础数据、组织权限范围、关联单据、配置项、系统计算、用户录入。
+- **枚举**：按展示顺序列出全部已确认值；尚不完整的定义放入“待确认项”。
+- **编辑性**：可编辑、不可编辑、条件可编辑；不只写视觉表现“置灰”。
+- **格式**：数据类型、已知的长度限制、金额或百分比范围、小数精度、日期格式和单位。
+- **联动**：触发字段或动作、受影响字段或模块、生效时点及重置行为。
+- **空值与异常**：已确认的空值展示、非法输入、来源不可用及计算失败处理。
 
-Avoid incomplete descriptions such as `规划组织：` or `规划状态：下拉单选；` with no source or options when that information is available.
+已有来源或选项时，不能只写“规划组织：”或“规划状态：下拉单选；”而遗漏这些信息。
 
-## 3. Lists and Operations
+## 3. 列表与操作
 
-Write list fields in visible order. For each editable column, state requiredness, input type, options/source, constraints, and editability. For calculated or read-only columns, state the source or formula.
+按页面顺序说明列表字段。可编辑列说明必填性、输入类型、选项或来源、约束及编辑性；计算列或只读列说明来源或公式。
 
-After the field list, describe operations separately:
+字段说明之后，单独描述操作：
 
-- trigger: what the user clicks or changes;
-- precondition: status, permission, or data requirement;
-- result: added row, drawer, dialog, navigation, relation, deletion, or submission;
-- feedback: button-state change, toast, refreshed count, saved status, or error;
-- cancellation/recovery: whether the action can be reversed and its downstream impact.
+- 触发：用户点击或修改什么；
+- 前提：状态、权限或数据条件；
+- 结果：新增行、抽屉、弹窗、跳转、关联、删除或提交；
+- 反馈：按钮状态、提示信息、数量刷新、保存状态或错误；
+- 取消与恢复：能否撤销及其下游影响。
 
-For association actions, specify the selectable business object, single/multiple selection, filters, echo fields, occupied amount or relation semantics, cancellation, and invalidation. Unknown dimensions belong in `待确认项`.
+关联操作应说明可选业务对象、单选或多选、过滤条件、回显字段、占用金额或关联含义、取消及失效处理。未知要素放入“待确认项”。
 
-## 4. Calculations, Units, and Thresholds
+## 4. 计算、单位与阈值
 
-Write formulas explicitly with business names:
+使用业务名称明确写出公式，例如：
 
-- `资源覆盖率=规划资源合计÷融资需求合计×100%。`
-- `预计余额=当前余额+本期新增金额-本期减少金额。`
+- `资源覆盖率＝规划资源合计÷融资需求合计×100%。`
+- `预计余额＝当前余额＋本期新增金额－本期减少金额。`
 
-Then state:
+并说明：
 
-- input data scope and time point;
-- currency conversion or organization-base-currency rule;
-- rounding and display precision;
-- zero denominator, missing data, and calculation failure behavior;
-- recalculation trigger and downstream fields;
-- threshold result and whether it blocks the workflow.
+- 输入数据的范围和时点；
+- 币种折算或组织本位币规则；
+- 舍入及展示精度；
+- 分母为零、数据缺失和计算失败的处理；
+- 重算触发条件及下游字段；
+- 阈值判断结果，以及是否阻断流程。
 
-Use one unit consistently in the field name or field description. Do not mix `元`, `万元`, and `亿元` across the same calculation without an explicit conversion rule. Use `BP` for basis-point differences and `pct` for percentage-point differences only when that convention is confirmed.
+字段名或描述中的单位须一致。同一计算不能混用元、万元和亿元，除非明确换算规则。只有已确认使用约定时，才用BP表示基点差、pct表示百分点差。
 
-## 5. States and Permissions
+## 5. 状态与权限
 
-Separate business document status from approval status when both exist.
+同时存在单据状态和审批状态时，分开描述。
 
-State rules in a compact matrix-like hierarchy:
+按紧凑的层级关系说明：
 
-1. status groups and allowed transitions;
-2. available row/page operations for each status;
-3. organization or role scope;
-4. prohibited repeat actions;
-5. submit, withdraw, reject, void, delete, and effective-version behavior.
+1. 状态分组及允许的转换；
+2. 每种状态下可用的行操作和页面操作；
+3. 组织或角色范围；
+4. 禁止重复执行的操作；
+5. 提交、撤回、驳回、作废、删除及生效版本的行为。
 
-Use observable language: `审批中仅允许查看，不允许编辑、删除或重复提交。` Avoid vague phrases such as `按权限控制` without identifying the permission dimension.
+使用可观察的表达，如“审批中仅允许查看，不允许编辑、删除或重复提交”。不只写“按权限控制”而不说明权限维度。
 
-## 6. Data Sources and Empty Values
+## 6. 数据来源与空值
 
-Name the business source, scope, and aggregation rule when known:
+已明确时，说明业务来源、范围及汇总规则，例如：
 
-`当前资源：系统按规划组织和规划周期汇总有效资源；不可编辑；无数据时展示0.00。`
+“当前资源：系统按规划组织和规划周期汇总有效资源；不可编辑；无数据时展示0.00。”
 
-Do not infer a database table, API, or technical storage design from a visible label. Include technical mappings only when the user or an approved specification requires them.
+不能由页面标签推断数据库表、接口或存储设计。只有用户或已批准规范要求时，才纳入技术映射。
 
-For standard components such as attachments, cover confirmed selection scope, file constraints, association type, organization mapping, summary information, preview/download/delete behavior, and storage mapping. Put missing limits and persistence details in `待确认项`.
+附件等标准组件应覆盖已确认的选择范围、文件限制、关联类型、组织映射、摘要信息、预览／下载／删除及存储映射。缺失的限制和保存规则放入“待确认项”。
 
-## 7. Cross-Module Linkage
+## 7. 跨模块联动
 
-Whenever an input changes, follow the impact chain:
+输入变化时，检查以下影响链：
 
-`输入变化 → 本模块合计 → 关联模块 → 风险/状态 → 提交或任务结果`
+`输入变化 → 本模块合计 → 关联模块 → 风险／状态 → 提交或任务结果`
 
-State only confirmed links, but inspect at least:
+只写已确认的联动，但至少检查：
 
-- count and amount totals;
-- resource coverage or plan balance;
-- calculated cost and risk indicators;
-- submission eligibility;
-- generated downstream task data;
-- association validity after source changes.
+- 数量和金额合计；
+- 资源覆盖或计划余额；
+- 测算成本与风险指标；
+- 提交条件；
+- 生成的下游任务数据；
+- 来源变化后的关联有效性。
 
-## 8. Pending Items
+## 8. 待确认项
 
-Use one consolidated `待确认项` row. Each item must name the object and missing decision, for example:
+集中使用一行“待确认项”，每项指出业务对象和缺失决策，例如：
 
-- selectable source objects and single/multiple selection;
-- exchange-rate source and conversion date;
-- calculation baseline and failure handling;
-- threshold source and blocking policy;
-- attachment limits and deletion rules;
-- approval lifecycle and version retention.
+- 可选来源对象、单选或多选；
+- 汇率来源和折算日期；
+- 计算基准和失败处理；
+- 阈值来源和阻断规则；
+- 附件限制和删除规则；
+- 审批生命周期和版本保留。
 
-Do not repeat questions already resolved in the PRD. Remove an item when the user decides it, and update the affected requirement row at the same time.
+不重复提出文档已经解决的问题。用户确认后，移除对应待确认项，同时更新所属需求条目。
 
-For each item, state `对象与缺失决策；受影响规则/模块；可继续的工作与依赖确认的部分。` Keep simple items short. Do not invent a recommended rule or silently treat a proposed answer as approved.
+每项说明“对象与缺失决策；受影响规则／模块；可继续的工作与依赖确认的部分”。简单事项简写。不得编造推荐规则，也不得把建议答案静默当作已批准规则。
 
-Example: `融资申请额度占用时点待确认：提交时还是审批通过时占用；影响可申请金额、并发超额校验和撤回释放规则；页面字段可继续编写，相关计算及验收预期暂不定稿。` The alternatives illustrate an unresolved choice, not default financing policy.
+示例：“融资申请额度占用时点待确认：提交时还是审批通过时占用；影响可申请金额、并发超额校验和撤回释放规则；页面字段可继续编写，相关计算及验收预期暂不定稿。”其中列举的是未定选项，不是默认融资政策。
 
-## 9. Prototype Screenshot and Document Inspection
+## 9. 原型截图与文档检查
 
-Use this procedure whenever screenshots are added or replaced in a PRD.
+新增或替换截图时，使用以下流程。
 
-### 9.1 Build the Row-to-Screenshot Map
+### 9.1 建立需求行与截图的映射
 
-Before capture, record the minimum mapping:
+截图前，至少记录：
 
-`PRD row name → OpenDesign page → functional region → interaction state → screenshot count`
+`需求行名称 → OpenDesign页面 → 功能区域 → 交互状态 → 截图数量`
 
-The screenshot must support the visible fields, actions, feedback, and states described in the corresponding requirement row. Do not capture a full page first and assign it to rows afterward.
+截图须支持对应行描述的可见字段、操作、反馈和状态。不能先截整页，再事后分配给需求行。
 
-### 9.2 Capture the Exact Functional Region
+### 9.2 截取准确的功能区域
 
-- **List and query rules:** include the relevant query conditions, summary, page actions, list columns, row operations, pagination, or empty state; crop out unrelated application areas.
-- **Form and field rules:** capture the owning form module with its labels, controls, required marks, defaults, and visible linkage state.
-- **Dialog, drawer, and detail behavior:** capture the opened surface in the state described by the row. Use a separate image when the background page is not needed to explain the behavior.
-- **Comparison and risk rules:** capture the comparison table or risk/recommendation panel itself. Do not reuse a full-page image merely because both modules appear on the same page.
-- **Non-screen processes:** use an available and confirmed flow artifact; do not invent a UI screenshot.
+- **列表与查询规则**：包含相关查询条件、摘要、页面操作、列表列、行操作、分页或空态，裁去无关区域。
+- **表单与字段规则**：截取所属表单模块，包含标签、控件、必填标识、默认值及可见联动状态。
+- **弹窗、抽屉和详情行为**：截取已打开的对应状态；不需要背景页面说明时，单独截图。
+- **比较与风险规则**：截取比较表或风险／建议面板本身，不能只因它们位于同一页面就复用整页截图。
+- **非页面流程**：使用已有且已确认的流程图，不虚构界面截图。
 
-The functional region must occupy most of the image. Exclude unrelated navigation, browser chrome, and large blank areas. If one long image would make labels or values unreadable, split the module into multiple images and keep their order clear.
+功能区域应占画面主体。去掉无关导航、浏览器边框及大面积留白。长模块在单张图中会缩小文字时，拆成多张，并保持阅读顺序。
 
-Reuse an image only when the rows genuinely describe the same visible region and interaction state. Sharing a source page is not sufficient reason for reuse.
+只有需求行确实描述同一可见区域、同一交互状态时，才复用截图；仅来源页面相同不够。
 
-### 9.3 Preserve Image Quality
+### 9.3 保证图像质量
 
-- Prepare the OpenDesign state before capture: expose the required module, dialog, drawer, error, empty state, or selected result and remove avoidable obstructions.
-- Prefer lossless or high-quality source images. Do not enlarge a low-resolution full-page image as a substitute for recapturing the functional region.
-- Judge effective readability after insertion, not only source-image dimensions. At the remote document's normal reading scale, relevant labels, buttons, statuses, and key values must be distinguishable without opening the image separately.
-- Preserve the prototype-cell title and existing manual text. Place each image below the matching title and keep multiple images in the order used by the requirement description.
+- 截图前准备好原型状态，展开相关模块、弹窗、抽屉、错误、空态或已选结果，清除可避免的遮挡。
+- 优先使用无损或高质量原图。不以放大低分辨率整页截图代替重新截取功能区域。
+- 以插入文档后的实际可读性判断质量，而非只看原图尺寸。远程文档正常阅读比例下，应能辨认相关标签、按钮、状态和关键值，不需单独打开图片。
+- 保留原型单元格标题及人工文字，图片置于对应标题下，多图顺序清楚。
 
-### 9.4 Verify Every Affected Row
+### 9.4 逐行核验
 
-Check each populated `原型` cell after upload:
+上传后，对每个已填充的“原型”单元格检查：
 
-`content match | functional crop | readable text | correct placement | upload complete | document saved`
+`内容匹配｜功能裁切准确｜文字可读｜位置正确｜上传完成｜文档已保存`
 
-All six checks must pass before reporting the screenshot work complete. Image-node existence, upload completion, or a saved-state indicator proves only technical persistence; it does not prove correct content, crop, readability, or placement.
+六项全部通过，才能报告截图工作完成。存在图片节点、上传完成或已保存，只能证明技术上已保存，不能证明内容、裁切、可读性和位置正确。
 
-If any content, crop, readability, or placement check fails, recapture and replace the image, wait for upload completion, confirm the remote document is saved, and repeat the row-level inspection.
+任一内容、裁切、可读性或位置检查失败时，重新截图替换，待上传及保存完成后，再次逐行核验。
 
-## 10. Language and Formatting
+## 10. 语言与格式
 
-- Use short declarative sentences and exact product labels.
-- Use Chinese punctuation consistently; end complete rules with `。`.
-- Use semicolons to separate component, source/options, constraints, and linkage.
-- Preserve the document's numbering style: `1.` → `a.` → `i.`.
-- Avoid generic filler such as `优化体验`, `支持相关操作`, or `系统自动处理`.
-- Avoid duplicating the same formula or status rule in multiple rows; keep the full rule in the owning module and reference its effect elsewhere.
-- Preserve user wording when it expresses an approved business decision, even if a more polished synonym exists.
+- 使用简短陈述句和准确的产品标签。
+- 统一使用中文标点，完整规则以句号结束。
+- 用分号分隔组件、来源／选项、约束和联动。
+- 保留现有文档编号：`1.` → `a.` → `i.`。
+- 避免“优化体验”“支持相关操作”“系统自动处理”等空泛表达。
+- 同一公式或状态规则不在多行重复展开；完整规则写在所属模块，其他位置引用其影响。
+- 原文已表达批准的业务决定时，保留用户用语，不为润色替换术语。
