@@ -63,7 +63,7 @@ Use the current document's hierarchical numbering. The preferred enterprise-docu
 
 ## Writing Fields and Rules
 
-Read [references/writing-style.md](references/writing-style.md) whenever the PRD contains forms, lists, calculations, states, permissions, attachments, associations, or screenshots. Follow its field contract and module ordering.
+Read [references/writing-style.md](references/writing-style.md) whenever the PRD contains forms, lists, calculations, states, permissions, attachments, associations, or screenshots, or when matching a user-authored sample. Apply its maintained-document style profile before its fallback field and module ordering. When logic and functionality are substantially the same as the supplied user-authored PRD, reuse its sentence patterns, hierarchy, terminology, and level of detail; describe only the actual differences rather than expanding it into explanatory prose. Preserve required business controls and record unresolved rules separately.
 
 For each field, cover only the dimensions that matter, but do not omit a known constraint:
 
@@ -82,17 +82,21 @@ Keep field description, calculation rule, and action behavior separate. A field 
 
 ## Prototype Images
 
+- For any screenshot task, read and follow the prototype screenshot procedure in [references/writing-style.md](references/writing-style.md).
+- Before capture, map each populated prototype row as `PRD row → OpenDesign page → functional region → interaction state → screenshot count`. The image must support the observable content described in that row.
 - Add one relevant image to every populated `原型` cell when the user requests screenshots.
-- Prefer a readable crop of the exact page section over a full-page image.
-- Use a list screenshot for list rules, a module crop for field rules, and a dialog/drawer/flow screenshot for its behavior.
-- Reuse a screenshot only when several rows genuinely describe the same visible surface.
+- Capture the exact functional region and state. Do not use a full browser viewport when it leaves the relevant content small, preserves unrelated navigation or chrome, or creates large blank areas.
+- Use a list/query crop for list rules, a module crop for field rules, and a dedicated dialog, drawer, comparison, risk-panel, or flow crop for its behavior. Split a long module into multiple readable images when one image would make its text too small.
+- Reuse a screenshot only when several rows genuinely describe the same visible surface and interaction state.
 - Preserve existing text in the cell and place the image below the title.
-- Verify the image finished uploading and the remote document is saved.
+- After insertion, inspect the remote document at its normal reading scale. Relevant fields, buttons, states, and key values must be readable without opening the image separately.
+- Verify content match, functional crop, readability, placement, upload completion, and saved state for each affected row. Upload completion and a saved document alone do not prove that a prototype image is correctly delivered.
 
 ## Final Quality Gate
 
 Apply the following to the affected scope; do not turn a small edit into a full-document audit. Confirm that:
 
+- similar functionality follows the supplied user-authored sample in sentence patterns, hierarchy, terminology, and detail; reused behavior states the actual differences, and unnecessary explanatory prose has been removed;
 - every visible field has an explanation or a deliberate exclusion;
 - field descriptions include known requiredness, type, source/options, editability, format, and linkage;
 - actions include trigger, result, feedback, and failure or cancellation behavior when relevant;
@@ -103,4 +107,5 @@ Apply the following to the affected scope; do not turn a small edit into a full-
 - critical rules have observable acceptance outcomes, or the missing outcome is explicitly pending;
 - review findings separate evidenced contradictions, missing decisions, and optional improvements, with concrete locations and consequences;
 - unknowns are consolidated in `待确认项` rather than disguised as facts;
-- screenshots match their rows and existing manual edits remain intact.
+- screenshots match their rows, use readable functional crops, remain legible at the remote document's normal reading scale, and existing manual edits remain intact;
+- screenshot completion is not reported from image-node existence, upload success, or saved state alone; failed content, crop, readability, or placement checks are recaptured and reverified.
