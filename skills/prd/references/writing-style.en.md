@@ -6,10 +6,12 @@ Use this reference for concise, field- and action-oriented Chinese enterprise PR
 
 Basis: on 2026-10-16, the user explicitly requested that similar logic follow their wording and description style. The sample is the user-authored reverse-factoring chapter, Chapter 5 of the factoring improvement document. Apply this profile to similar enterprise PRD tasks for this user. New samples and explicit instructions take precedence. Learn the expression, not universal business rules; do not propagate unfinished entries or contradictions from the sample.
 
+On 2026-10-30, the user further specified that generated PRDs must match their logic, language, structure, and wording, and accepted 34 budget-folder files as samples. Full text was obtained for 32; two were unavailable. Apply the [logic and expression profile](author-profile.en.md) for structure selection, decomposition, sentence patterns, and source anchors when writing or rewriting. Screenshot-only content does not establish field rules.
+
 ### Expression and Detail
 
 - Read the complete relevant module and the closest user-authored chapter. Identify row boundaries, field order, numbering, sentence patterns, and information density. For matching logic, reuse the sentence structure and replace only business objects that actually differ; do not reorganize it into a different document style.
-- Preserve existing column labels, such as Prototype / Requirements Analysis. Use one row per page, drawer, dialog, or related modification module, and retain the sample's `1.` → `a.` → `i.` hierarchy. Keep fields under their owning modules, such as Basic Information; do not flatten nested entries into long paragraphs.
+- Preserve existing column labels, such as Prototype / Requirements Analysis. Use one row per page, drawer, dialog, or related modification module. Retain the sample's hierarchy, including `1.` → `a.` → `i.` or nested numeric numbering, and its three-column, two-column, or item-based structure. Keep fields under their owning modules, such as Basic Information; do not flatten nested entries into long paragraphs.
 - State functions and actions directly: "The list includes...", "Filter...", "Click... to open/enter...", "If..., then...", and "When..., notify... to update...". Each item describes one action or a tightly related group of rules. Use the next numbering level when elaboration is necessary.
 - Use compact field descriptions, such as "Institution type: defaults to Bank; editable; required." Preserve exact source field names, business terms, defaults, and explicit restrictions such as disabled and non-editable. Treat the field contract as a completeness checklist, not a mandatory word order or a demand to expand every dimension for every field.
 - For identical behavior, write "Same as..." or "Reuse...". For differences, write "Based on..., add/remove..." or "Only rename... to... (not editable)." References must identify a specific function or module, and differences must be explicit. Do not write "same as existing logic" when important behavior differs or the source is unknown.
@@ -218,7 +220,7 @@ If any content, crop, readability, or placement check fails, recapture and repla
 - Use short declarative sentences and exact product labels.
 - Use Chinese punctuation consistently in Chinese deliverables; end complete rules with a full stop.
 - Use semicolons to separate component, source/options, constraints, and linkage.
-- Preserve the existing numbering: `1.` → `a.` → `i.`.
+- Preserve existing numbering, including `1.` → `a.` → `i.` or nested numeric lists; do not normalize it.
 - Avoid generic filler such as "improve the experience", "support related actions", or "the system handles it automatically".
 - Do not repeat the same formula or status rule in multiple rows. Keep the full rule in its owning module and reference its effect elsewhere.
 - Preserve user wording for approved business decisions rather than replacing terms for stylistic polish.

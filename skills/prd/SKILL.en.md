@@ -5,7 +5,7 @@ description: Create, update, or review Chinese enterprise PRDs from OpenDesign p
 
 # PRD Requirements Documents
 
-Write implementation-oriented Chinese enterprise PRDs that preserve the user's established document style and decisions.
+Write implementation-oriented Chinese enterprise PRDs matching the user's business decomposition, document structure, language, wording, and detail. Reuse their expression for matching logic and expand actual differences; extra length, completeness, or generic templates cannot replace fidelity.
 
 The [Chinese entrypoint](SKILL.md) and [Chinese writing-style reference](references/writing-style.md) are the defaults. This English edition and its [English writing-style reference](references/writing-style.en.md) contain the same rules for English reading. They do not change the requested deliverable language or create a second skill. Update corresponding editions together; reading both languages for one task is unnecessary.
 
@@ -19,7 +19,17 @@ Infer the mode from the request and available context; do not ask the user to ch
 
 Read [references/business-review.md](references/business-review.md) for new functionality, cross-module rule changes, or substantive business review. Read [references/acceptance-review.md](references/acceptance-review.md) for full PRDs, reviews, or updates affecting behavior, calculations, associations, states, or permissions. Plain wording edits need neither reference.
 
+Before expanding flows and exceptions, distinguish additions, existing capabilities to reuse, and explicit exclusions for this release. Adjacent chapters provide reuse evidence, not automatic inheritance of bank connectivity, approvals, or later-stage processing. Industry capabilities do not automatically enter scope. Inspect actual dependencies without turning closure checks into a build list.
+
 Continue work supported by the evidence. Ask only for missing decisions that materially affect correctness; keep dependent rules unresolved while progressing on independent sections.
+
+## Align with a User Sample Before Writing
+
+For authoring, rewriting, or substantive updates, read the [user logic and expression profile](references/author-profile.en.md) and select the current document or a comparable user chapter. Plain typo fixes can follow the current sentence directly.
+
+Establish the sample, decomposition order, headings/columns, row size, numbering, terminology/sentences, density, and shared-rule references before drafting. Keep this working comparison out of the PRD by default. Prefer the current structure; otherwise choose the task-appropriate full-module, monthly-improvement, or interface-rule shape. Do not convert three columns to two, flatten nested items into essays, or expand a local change into a full plan.
+
+When asked to write like the user, check business logic, structure, language/wording, and density together. Preserve known controls and boundaries and keep unknowns pending; copying old rules, contradictions, or incomplete conditions is not fidelity.
 
 ## Source Priority
 
@@ -44,7 +54,7 @@ When reconciling sources:
 
 ## Required Working Method
 
-1. Read the current PRD and identify its actual headings, table structure, numbering, terminology, units, and level of detail.
+1. Read the current PRD and closest user sample. Identify actual decomposition, headings, tables, numbering, terms, units, and detail using the expression profile. Check strikethrough, version/deferred notes, and discussion options before merging any historical rules.
 2. Read available relevant OpenDesign files and visible states to the depth required by the mode. Inspect affected modules and dependencies; disclose unavailable evidence without inventing screens or blocking independent document work.
 3. Build a focused change list: added, changed, removed, and unchanged content.
 4. Update only the affected rows or sections. Keep approved user-authored wording unless it conflicts with a newer explicit decision.
@@ -52,16 +62,16 @@ When reconciling sources:
 6. Check critical rules through relevant acceptance scenarios. Correct contradictions supported by established decisions; keep unsupported outcomes unresolved. Fold clarified rules into their owning rows rather than adding a test document by default.
 7. Before reporting completion, verify affected row order, field coverage, formulas, screenshots when involved, and save state. Distinguish document inspection, visual verification, and executed software tests; report only checks actually performed.
 
-## Default Document Shape
+## Document Shape
 
-When the existing sample uses the same format, write the Requirements Analysis section as a two-column table:
+Preserve actual headings and columns, including three-column Prototype/Function/Detailed Analysis or single-column Requirements Analysis formats. Do not normalize them. Without a current document, choose a comparable shape from the expression profile. Only use the following two-column Requirements Analysis form when the selected sample uses it:
 
 - the Prototype column: one page, module, dialog, flow, or major state per row. Keep the module title and add the corresponding cropped OpenDesign screenshot below it.
 - the Requirements Analysis column: describe observable fields, actions, rules, calculations, states, permissions, feedback, and exceptions for that row.
 
 Use one row per coherent module. Do not create rows for purely internal implementation details. For a non-screen process such as approval, use an available flow diagram or confirmed process artifact; do not fabricate a UI screenshot.
 
-Use the current document's hierarchical numbering. The preferred enterprise-document pattern is `1.` → `a.` → `i.`. Keep items concise enough to scan, but complete enough for design, development, and testing.
+Preserve the current hierarchy, whether `1.` → `a.` → `i.` or nested numeric lists; use the former only as a fallback. Keep items concise enough to scan and complete enough for design, development, and testing.
 
 ## Writing Fields and Rules
 
@@ -96,9 +106,11 @@ Keep field description, calculation rule, and action behavior separate. A field 
 
 ## Final Quality Gate
 
-Apply the following to the affected scope; do not turn a small edit into a full-document audit. Confirm that:
+Apply this to the affected scope without turning a small edit into a full-document audit. First check user logic/expression fidelity, then correctness/completeness. Repair either failure; one cannot compensate for the other. Confirm that:
 
-- similar functionality follows the supplied user-authored sample in sentence patterns, hierarchy, terminology, and detail; reused behavior states the actual differences, and unnecessary explanatory prose has been removed;
+- the selected user sample is matched in decomposition, headings/columns, row size, numbering, field order, sentences, terminology, and density; reused behavior states actual differences and unnecessary explanation is removed;
+- actual impacts on queries, filtering, sorting, imports/exports, approval, interfaces, and historical data are checked only for relevant changes; supported changes enter their owning entries, while unknowns are not invented as defaults;
+- discussion options, strikethrough, deferred items, and carried-forward history are distinguished without reviving canceled rules or treating document status as implementation evidence;
 - every visible field has an explanation or a deliberate exclusion;
 - field descriptions include known requiredness, type, source/options, editability, format, and linkage;
 - actions include trigger, result, feedback, and failure or cancellation behavior when relevant;
@@ -108,6 +120,6 @@ Apply the following to the affected scope; do not turn a small edit into a full-
 - substantive changes have clear business-object ownership and no unexplained duplicate maintenance;
 - critical rules have observable acceptance outcomes, or the missing outcome is explicitly pending;
 - review findings separate evidenced contradictions, missing decisions, and optional improvements, with concrete locations and consequences;
-- unknowns are consolidated in Pending Items rather than disguised as facts;
+- unknowns are consolidated in Pending Items rather than disguised as facts, limited to decisions needed for in-scope delivery rather than questions created by out-of-scope ideas;
 - screenshots match their rows, use readable functional crops, remain legible at the remote document's normal reading scale, and existing manual edits remain intact;
 - screenshot completion is not reported from image-node existence, upload success, or saved state alone; failed content, crop, readability, or placement checks are recaptured and reverified.
