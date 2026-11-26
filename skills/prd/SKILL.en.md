@@ -31,6 +31,8 @@ Establish the sample, decomposition order, headings/columns, row size, numbering
 
 When asked to write like the user, check business logic, structure, language/wording, and density together. Preserve known controls and boundaries and keep unknowns pending; copying old rules, contradictions, or incomplete conditions is not fidelity.
 
+Only for factoring bank-connectivity analysis, bank-to-platform standard-interface mapping, and incremental updates to those analyses, read [factoring connectivity analysis](references/factoring-direct-analysis.en.md). Do not apply this specialized logic to ordinary factoring PRDs, other financing modules, or other business interfaces.
+
 ## Source Priority
 
 Use sources in this order:
